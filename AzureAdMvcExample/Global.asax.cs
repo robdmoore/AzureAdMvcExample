@@ -13,6 +13,7 @@ namespace AzureAdMvcExample
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             GlobalFilters.Filters.Add(new AuthorizeAttribute());
+            IdentityConfig.ConfigureIdentity();
         }
     }
 }
