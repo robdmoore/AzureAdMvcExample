@@ -1,4 +1,5 @@
-﻿@{
+﻿@using System.Security.Claims
+@{
     ViewBag.Title = "Azure AD MVC Example";
 }
 
@@ -7,3 +8,24 @@
     <p class="lead">Example of how to set up an ASP.NET MVC 5 website with Azure AD authentication.</p>
     <p><a href="https://github.com/robdmoore/AzureAdMvcExample" class="btn btn-primary btn-lg" target="_blank">See the code &raquo;</a></p>
 </div>
+
+@if (User.Identity.IsAuthenticated)
+{
+    var claimsPrincipal = (ClaimsPrincipal) User;
+    <p class="lead">Logged in as <mark>@User.Identity.Name</mark> via @User.Identity.AuthenticationType with claims:</p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Claim type</th>
+                <th scope="col">Claim value</th>
+            </tr>
+        </thead>
+        @foreach (var claim in claimsPrincipal.Claims)
+        {
+            <tr>
+                <td><code>@claim.Type</code></td>
+                <td><code>@claim.Value</code></td>
+            </tr>
+        }
+    </table>
+}
