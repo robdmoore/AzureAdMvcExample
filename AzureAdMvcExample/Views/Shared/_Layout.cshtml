@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@using System.Security.Claims
+@using ClaimTypes = System.IdentityModel.Claims.ClaimTypes
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -31,6 +33,17 @@
     </div>
     <div class="container body-content">
         @RenderBody()
+        <footer>
+            <hr />
+            @if (User.Identity.IsAuthenticated)
+            {
+                @:Logged in as @(ClaimsPrincipal.Current.FindFirst(ClaimTypes.GivenName).Value) @(ClaimsPrincipal.Current.FindFirst(ClaimTypes.Surname).Value).
+            }
+            else
+            {
+                @:Not logged in
+            }
+        </footer>
     </div>
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
