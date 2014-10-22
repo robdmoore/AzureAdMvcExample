@@ -1,4 +1,5 @@
 ﻿using System.Configuration;
+using System.IdentityModel.Tokens;
 using Microsoft.Owin.Security.ActiveDirectory;
 using Owin;
 
@@ -11,7 +12,10 @@ namespace AzureAdMvcExample
             app.UseWindowsAzureActiveDirectoryBearerAuthentication(
                 new WindowsAzureActiveDirectoryBearerAuthenticationOptions
                 {
-                    Audience = ConfigurationManager.AppSettings["ida:AudienceUri"],
+                    TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidAudience = ConfigurationManager.AppSettings["ida:AudienceUri"]
+                    },
                     Tenant = ConfigurationManager.AppSettings["AzureADTenant"]
                 });
         }
