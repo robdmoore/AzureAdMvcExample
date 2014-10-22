@@ -18,4 +18,4 @@ Infrastructure Setup
 * Application with realm / audience URL `http://localhost:34999` and client ID `4e84d32e-7c1d-420b-88ac-e5cb655d292f` (matches the IIS Express setting for the local site)
 * Application with realm / audience URL `https://azureadmvcexample.azurewebsites.net` and client ID `e4a511a6-f9a2-408c-a4a1-c687bc93e297`
 * The following test users:
-    * `username1@azureadmvcexample.onmicrosoft.com` with password `P@ssword1`
+    * `username1@azureadmvcexample.onmicrosoft.com` with password `P@ssword2`
