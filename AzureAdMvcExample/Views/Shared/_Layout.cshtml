@@ -23,6 +23,18 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    @if (User.IsInRole("Group 1"))
+                    {
+                        <li>@Html.ActionLink("Group 1", "Group1", "Home")</li>
+                    }
+                    @if (User.IsInRole("Group 2"))
+                    {
+                        <li>@Html.ActionLink("Group 2", "Group2", "Home")</li>
+                    }
+                    @if (User.IsInRole("Group 3"))
+                    {
+                        <li>@Html.ActionLink("Group 3", "Group3", "Home")</li>
+                    }
                     @if (User.Identity.IsAuthenticated)
                     {
                         <li>@Html.ActionLink("Logout", "Index", "Logout")</li>
