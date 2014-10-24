@@ -20,7 +20,7 @@ namespace AzureAdMvcExample.Infrastructure.Auth
             var roles = graphConnection.GetRolesForUser(incomingPrincipal);
             foreach (var r in roles)
                 ((ClaimsIdentity)incomingPrincipal.Identity).AddClaim(
-                    new Claim(ClaimTypes.Role, r, ClaimValueTypes.String, "GRAPH"));
+                    new Claim(ClaimTypes.Role, r.ToString(), ClaimValueTypes.String, "GRAPH"));
             return incomingPrincipal;
         }
     }

@@ -43,6 +43,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
     </Reference>
+    <Reference Include="Humanizer">
+      <HintPath>..\packages\Humanizer.1.29.0\lib\portable-win+net40+sl50+wp8+wpa81\Humanizer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Azure.ActiveDirectory.GraphClient">
       <HintPath>..\packages\Microsoft.Azure.ActiveDirectory.GraphClient.1.0.3\lib\net40\Microsoft.Azure.ActiveDirectory.GraphClient.dll</HintPath>
     </Reference>
@@ -159,8 +162,11 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Infrastructure\Auth\AppRoles.cs" />
+    <Compile Include="Infrastructure\Auth\AuthorizeRolesAttribute.cs" />
     <Compile Include="Infrastructure\Auth\AzureADGraphConnection.cs" />
     <Compile Include="Infrastructure\Auth\AzureADGraphClaimsAuthenticationManager.cs" />
+    <Compile Include="Infrastructure\Auth\IPrincipalExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -1,4 +1,5 @@
 ﻿using System.Web.Mvc;
+using AzureAdMvcExample.Infrastructure.Auth;
 
 namespace AzureAdMvcExample.Controllers
 {
@@ -9,19 +10,19 @@ namespace AzureAdMvcExample.Controllers
             return View();
         }
 
-        [Authorize(Roles = "Group 1")]
+        [AuthorizeRoles(AppRoles.Group1)]
         public ActionResult Group1()
         {
             return View();
         }
 
-        [Authorize(Roles = "Group 2")]
+        [AuthorizeRoles(AppRoles.Group2)]
         public ActionResult Group2()
         {
             return View();
         }
 
-        [Authorize(Roles = "Group 3")]
+        [AuthorizeRoles(AppRoles.Group3)]
         public ActionResult Group3()
         {
             return View();
