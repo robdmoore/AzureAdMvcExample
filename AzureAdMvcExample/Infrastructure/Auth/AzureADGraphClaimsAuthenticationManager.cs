@@ -11,7 +11,7 @@ namespace AzureAdMvcExample.Infrastructure.Auth
                 return incomingPrincipal;
 
             // Ideally this should be the code below so the connection is resolved from a DI container, but for simplicity of the demo I'll leave it as a new statement
-            //var graphConnection = DependencyResolver.Current.GetService<IAzureAdConnection>();
+            //var graphConnection = DependencyResolver.Current.GetService<IAzureADGraphConnection>();
             var graphConnection = new AzureADGraphConnection(
                 ConfigurationManager.AppSettings["AzureADTenant"],
                 ConfigurationManager.AppSettings["ida:ClientId"],
