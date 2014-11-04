@@ -19,11 +19,19 @@ namespace AzureAdMvcExample
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/userlookup").Include(
+                      "~/Scripts/typeahead.jquery.js",
+                      "~/Scripts/userlookup.js"));
+
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                      "~/Content/site.css",
+                      "~/Content/typeaheadjs.css",
+                      "~/Content/userlookup.css"));
 
-            BundleTable.EnableOptimizations = true;
+            #if !DEBUG
+                BundleTable.EnableOptimizations = true;
+            #endif
         }
     }
 }

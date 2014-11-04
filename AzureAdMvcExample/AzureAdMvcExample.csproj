@@ -159,6 +159,7 @@
     <Compile Include="App_Start\Startup.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LogoutController.cs" />
+    <Compile Include="Controllers\UserLookupController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -174,6 +175,9 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\loading.gif" />
+    <Content Include="Content\typeaheadjs.css" />
+    <Content Include="Content\userlookup.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -199,6 +203,8 @@
     <Content Include="Scripts\respond.matchmedia.addListener.js" />
     <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\typeahead.jquery.js" />
+    <Content Include="Scripts\userlookup.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Release.config">
@@ -212,6 +218,7 @@
     <Content Include="Views\Home\Group1.cshtml" />
     <Content Include="Views\Home\Group2.cshtml" />
     <Content Include="Views\Home\Group3.cshtml" />
+    <Content Include="Views\UserLookup\Index.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

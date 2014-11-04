@@ -1,0 +1,25 @@
+﻿.loading {
+    background-image: url("loading.gif");
+    background-repeat: no-repeat;
+    background-position: 100% 50%;
+}
+
+.matchfound {
+    text-decoration: underline;
+}
+
+.nomatchfound {
+    color: red;
+    text-decoration: underline;
+    font-style: italic;
+    -moz-text-decoration-line: underline;
+    -moz-text-decoration-color: red;
+    -moz-text-decoration-style: wavy;
+    -webkit-text-decoration-line: underline;
+    -webkit-text-decoration-color: red;
+    -webkit-text-decoration-style: dotted;
+    -webkit-text-decoration-style: wavy;
+    text-decoration-line: underline;
+    text-decoration-color: red;
+    text-decoration-style: wavy;
+}

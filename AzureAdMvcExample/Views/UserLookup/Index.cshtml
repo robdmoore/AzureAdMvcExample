@@ -1,0 +1,40 @@
+﻿@using Newtonsoft.Json
+@model AzureAdMvcExample.Controllers.UserLookupViewModel
+@{
+    ViewBag.Title = "User lookup";
+}
+
+<h1>Search Azure AD for users by name</h1>
+
+<form class="form-horizontal" method="post" action="">
+    <fieldset>
+        <legend>User lookup</legend>
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="UserName">User name</label>
+            <div class="col-md-6">
+                <input type="hidden" name="UserId" id="UserId" value="@Model.UserId"/>
+                <div class="input-group">
+                    <input id="UserName" name="UserName" type="text" placeholder="Enter user's name and hit ctrl+k" class="form-control" required autofocus value="@Model.UserName" data-user-lookup="UserId">
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-4">&nbsp;</div>
+            <div class="col-md-4">
+                <button class="btn btn-primary">Lookup</button>
+            </div>
+        </div>
+    </fieldset>
+</form>
+
+@if (Model.User != null)
+{
+    <h2>User information</h2>
+    <pre>@JsonConvert.SerializeObject(Model.User, Formatting.Indented)</pre>
+}
+
+@section scripts {
+    <script type="text/javascript">
+        $("[data-user-lookup]").userlookup({apiUrl: "@Url.Action("Search", "UserLookup")"});
+    </script>
+}

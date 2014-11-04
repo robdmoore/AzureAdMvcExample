@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Security.Claims;
 using Humanizer;
 using Microsoft.Azure.ActiveDirectory.GraphClient;
@@ -11,6 +12,8 @@ namespace AzureAdMvcExample.Infrastructure.Auth
     public interface IAzureADGraphConnection
     {
         IList<AppRoles> GetRolesForUser(ClaimsPrincipal userPrincipal);
+        IList<User> SearchUsers(string query);
+        User GetUser(Guid id);
     }
 
     public class AzureADGraphConnection : IAzureADGraphConnection
@@ -38,6 +41,45 @@ namespace AzureAdMvcExample.Infrastructure.Auth
                 .Where(r => r.HasValue)
                 .Select(r => r.Value)
                 .ToList();
+        }
+
+        public IList<User> SearchUsers(string query)
+        {
+            var displayNameFilter = ExpressionHelper.CreateStartsWithExpression(typeof(User), GraphProperty.DisplayName, query);
+            var surnameFilter = ExpressionHelper.CreateStartsWithExpression(typeof(User), GraphProperty.Surname, query);
+            var usersByDisplayName = _graphConnection
+                .List<User>(null, new FilterGenerator { QueryFilter = displayNameFilter })
+                .Results;
+            var usersBySurname = _graphConnection
+                .List<User>(null, new FilterGenerator { QueryFilter = surnameFilter })
+                .Results;
+
+            return usersByDisplayName.Union(usersBySurname, new UserComparer()).ToArray();
+        }
+
+        public User GetUser(Guid id)
+        {
+            try
+            {
+                return _graphConnection.Get<User>(id.ToString());
+            }
+            catch (ObjectNotFoundException)
+            {
+                return null;
+            }
+        }
+
+        class UserComparer : IEqualityComparer<User>
+        {
+            public bool Equals(User x, User y)
+            {
+                return x.ObjectId == y.ObjectId;
+            }
+
+            public int GetHashCode(User obj)
+            {
+                return obj.ObjectId.GetHashCode();
+            }
         }
     }
 }
